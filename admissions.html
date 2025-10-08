@@ -9,41 +9,134 @@
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav>
- <div class="logo">
-   <img src="images/logo.png" alt="ASO College Logo" style="height:50px;">
- </div>
+  <div class="logo">
+    <img src="images/logo.png" alt="ASO College Logo" style="height:50px;">
+  </div>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="programs.html">Programs</a>
     <a href="admissions.html" class="active">Admissions</a>
-    <a href="assignments.html">Assignments</a>
     <a href="gallery.html">Gallery</a>
-    <a href="news.html">News</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <header class="hero small-hero">
   <h1>Admissions</h1>
-  <p>Join ASO College and become part of a vibrant learning community.</p>
+  <p>Apply to ASO College of Stewardship – Institute of Excellence</p>
 </header>
 
+<!-- FORM SECTION -->
 <section>
-  <h2>Apply Online</h2>
-  <p>Fill out our admission form below:</p>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdDemoLink/viewform?embedded=true" 
-          width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  <h2>Student Admission Form</h2>
+  <p>Please complete the form below. After filling, click “Send via WhatsApp” to submit.</p>
 
-  <h2>Payment of Fees</h2>
-  <p>Pay your admission or tuition fees online securely.</p>
-  <a href="#" class="btn">Pay Now</a>
+  <form id="admissionForm">
+    <label>Full Name:</label>
+    <input type="text" id="name" required>
+
+    <label>Date of Birth:</label>
+    <input type="date" id="dob">
+
+    <label>Country of Origin:</label>
+    <input type="text" id="country">
+
+    <label>Nationality:</label>
+    <input type="text" id="nationality">
+
+    <label>Hometown:</label>
+    <input type="text" id="hometown">
+
+    <label>Region / Province:</label>
+    <input type="text" id="region">
+
+    <label>Level of Education:</label>
+    <select id="education">
+      <option value="">Select level</option>
+      <option>University</option>
+      <option>Senior High</option>
+      <option>Junior High</option>
+      <option>Primary</option>
+      <option>None</option>
+    </select>
+
+    <label>Profession:</label>
+    <input type="text" id="profession">
+
+    <label>Email:</label>
+    <input type="email" id="email">
+
+    <label>Phone Number:</label>
+    <input type="tel" id="phone">
+
+    <label>Residential Address:</label>
+    <textarea id="address" rows="3"></textarea>
+
+    <label>Program of Interest:</label>
+    <input type="text" id="program">
+
+    <button type="button" class="btn" onclick="sendToWhatsApp()">📩 Send via WhatsApp</button>
+  </form>
 </section>
 
+<!-- DOWNLOADABLE PDF -->
+<section>
+  <h3>Official Fillable PDF Form</h3>
+  <p>You can also download and fill the official ASO College Admission Form:</p>
+  <a href="ASO%20COLLEGE%20OF%20STEWARDSHIP%20form.pdf" class="btn" target="_blank">⬇️ Download PDF Form</a>
+</section>
+
+<!-- AFFILIATION -->
+<section class="affiliation">
+  <h2>Affiliation</h2>
+  <p>ASO College of Stewardship is proudly affiliated with <strong>WEBBIC University, USA & Ghana</strong>.</p>
+  <img src="images/webbic-logo.png" alt="WEBBIC University Logo" style="height:80px;">
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>© 2025 ASO College of Stewardship – Institute of Excellence</p>
+  <p>© 2025 ASO College of Stewardship – Institute of Excellence | 
+  <a href="mailto:saviouragbelegbe@gmail.com">Email</a> | 
+  <a href="tel:+233546669312">Call</a></p>
 </footer>
+
+<!-- SCRIPT -->
+<script>
+function sendToWhatsApp() {
+  const name = document.getElementById("name").value;
+  const dob = document.getElementById("dob").value;
+  const country = document.getElementById("country").value;
+  const nationality = document.getElementById("nationality").value;
+  const hometown = document.getElementById("hometown").value;
+  const region = document.getElementById("region").value;
+  const education = document.getElementById("education").value;
+  const profession = document.getElementById("profession").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const address = document.getElementById("address").value;
+  const program = document.getElementById("program").value;
+
+  const message = `ASO College Admission Form%0A
+  Name: ${name}%0A
+  DOB: ${dob}%0A
+  Country: ${country}%0A
+  Nationality: ${nationality}%0A
+  Hometown: ${hometown}%0A
+  Region: ${region}%0A
+  Education Level: ${education}%0A
+  Profession: ${profession}%0A
+  Email: ${email}%0A
+  Phone: ${phone}%0A
+  Address: ${address}%0A
+  Program of Interest: ${program}`;
+
+  window.open(`https://wa.me/233546669312?text=${message}`, '_blank');
+}
+</script>
 
 </body>
 </html>
