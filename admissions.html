@@ -30,10 +30,10 @@
   <p>Apply to ASO College of Stewardship – Institute of Excellence</p>
 </header>
 
-<!-- FORM SECTION -->
+<!-- ADMISSION FORM -->
 <section>
   <h2>Student Admission Form</h2>
-  <p>Please complete the form below. After filling, click “Send via WhatsApp” to submit.</p>
+  <p>Please complete the form below. After submission, proceed to payment to confirm your application.</p>
 
   <form id="admissionForm">
     <label>Full Name:</label>
@@ -79,11 +79,11 @@
     <label>Program of Interest:</label>
     <input type="text" id="program">
 
-    <button type="button" class="btn" onclick="sendToWhatsApp()">📩 Send via WhatsApp</button>
+    <button type="button" onclick="processAdmission()" class="btn">💳 Proceed to Payment</button>
   </form>
 </section>
 
-<!-- DOWNLOADABLE PDF -->
+<!-- DOWNLOAD FORM -->
 <section>
   <h3>Official Fillable PDF Form</h3>
   <p>You can also download and fill the official ASO College Admission Form:</p>
@@ -99,42 +99,40 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 ASO College of Stewardship – Institute of Excellence | 
-  <a href="mailto:saviouragbelegbe@gmail.com">Email</a> | 
-  <a href="tel:+233546669312">Call</a></p>
+  <p>© 2025 ASO College of Stewardship – Institute of Excellence |
+    <a href="mailto:saviouragbelegbe@gmail.com">Email</a> |
+    <a href="tel:+233546669312">Call</a>
+  </p>
 </footer>
 
 <!-- SCRIPT -->
 <script>
-function sendToWhatsApp() {
-  const name = document.getElementById("name").value;
-  const dob = document.getElementById("dob").value;
-  const country = document.getElementById("country").value;
-  const nationality = document.getElementById("nationality").value;
-  const hometown = document.getElementById("hometown").value;
-  const region = document.getElementById("region").value;
-  const education = document.getElementById("education").value;
-  const profession = document.getElementById("profession").value;
-  const email = document.getElementById("email").value;
-  const phone = document.getElementById("phone").value;
-  const address = document.getElementById("address").value;
-  const program = document.getElementById("program").value;
+function processAdmission() {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const program = document.getElementById("program").value.trim();
 
-  const message = `ASO College Admission Form%0A
-  Name: ${name}%0A
-  DOB: ${dob}%0A
-  Country: ${country}%0A
-  Nationality: ${nationality}%0A
-  Hometown: ${hometown}%0A
-  Region: ${region}%0A
-  Education Level: ${education}%0A
-  Profession: ${profession}%0A
-  Email: ${email}%0A
-  Phone: ${phone}%0A
-  Address: ${address}%0A
-  Program of Interest: ${program}`;
+  if (!name || !phone || !program) {
+    alert("Please fill in Name, Phone, and Program before continuing.");
+    return;
+  }
 
-  window.open(`https://wa.me/233546669312?text=${message}`, '_blank');
+  // ✅ Hubtel Integration — Replace with your real merchant key and callback
+  const merchantAccount = "YOUR_HUBTEL_MERCHANT_ACCOUNT"; // e.g. hubtelmerchant@domain.com
+  const amount = 200 * 100; // GHS 200.00 (Hubtel expects pesewas)
+  const clientRef = "ASO_APP_" + Date.now();
+  const callbackUrl = encodeURIComponent("https://yourdomain.com/confirm.html");
+
+  const checkoutUrl =
+    `https://checkout.hubtel.com/?merchantAccount=${merchantAccount}` +
+    `&amount=${amount}&currency=GHS&clientReference=${clientRef}&returnUrl=${callbackUrl}`;
+
+  // Save data temporarily (optional, can be sent to backend)
+  localStorage.setItem("admissionForm", JSON.stringify({
+    name, phone, program
+  }));
+
+  window.location.href = checkoutUrl;
 }
 </script>
 
