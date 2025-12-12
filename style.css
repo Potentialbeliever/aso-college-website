@@ -61,10 +61,10 @@ nav .nav-links a.active {
   transform: translateY(-2px);
 }
 
-/* MOBILE MENU */
+/* ================= MOBILE NAVIGATION ================= */
 .menu-toggle {
   display: none;
-  font-size: 30px;
+  font-size: 32px;
   cursor: pointer;
   color: var(--text-light);
 }
@@ -74,13 +74,20 @@ nav .nav-links a.active {
     display: block;
   }
 
+  nav {
+    flex-direction: column;
+    padding: 12px 20px;
+  }
+
   nav .nav-links {
-    width: 100%;
     display: none;
     flex-direction: column;
+    align-items: center;
     background: var(--primary-green-dark);
+    width: 100%;
     padding: 15px 0;
     border-top: 2px solid var(--accent-orange);
+    animation: dropMenu 0.3s ease forwards;
   }
 
   nav .nav-links.show {
@@ -88,8 +95,22 @@ nav .nav-links a.active {
   }
 
   nav .nav-links a {
-    margin: 12px 0;
+    margin: 8px 0;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
     font-size: 1.1rem;
+  }
+}
+
+@keyframes dropMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -200,7 +221,7 @@ section h2::after {
   margin-top: 8px;
 }
 
-/* Cards */
+/* ================= CARDS ================= */
 article {
   background: #fff;
   padding: 20px;
@@ -323,22 +344,6 @@ footer a:hover {
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    padding: 12px 20px;
-  }
-
-  nav .nav-links {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav .nav-links a {
-    margin: 8px;
-  }
-
   .hero h1 {
     font-size: 2.3rem;
   }
@@ -390,7 +395,7 @@ footer a:hover {
 }
 
 /* =====================================
-   STICKY APPLY BUTTON
+   STICKY APPLY NOW BUTTON
 ===================================== */
 .apply-now {
   position: fixed;
