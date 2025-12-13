@@ -4,41 +4,43 @@
   <meta charset="UTF-8">
   <title>ASO College Admissions</title>
 
-  <!-- LINK YOUR CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- jsPDF for PDF creation -->
+  <!-- jsPDF -->
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
 <body>
 
-<!-- NAVIGATION BAR -->
+<!-- ================= NAVBAR ================= -->
 <nav>
   <div class="logo">
     <img src="images/logo.png" alt="ASO College Logo">
   </div>
-  <div class="nav-links">
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="programs.html">Programs</a>
-    <a class="active" href="admissions.html">Admissions</a>
+    <a href="admissions.html" class="active">Admissions</a>
     <a href="gallery.html">Gallery</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
-
-<!-- HERO HEADER -->
+<!-- ================= HERO ================= -->
 <header class="hero small-hero">
   <h1>Admissions</h1>
   <p>Start your journey with ASO College of Stewardship</p>
 </header>
 
-
-<!-- ADMISSION FORM -->
+<!-- ================= FORM ================= -->
 <section>
 <form id="admissionForm" onsubmit="return false;">
-
   <h3>Student Admission Form</h3>
 
   <label>Full Name *</label>
@@ -86,43 +88,42 @@
 
   <button type="button" onclick="downloadPDF()">Download PDF</button>
   <button type="button" onclick="sendWhatsApp()">Send to WhatsApp</button>
-  <button type="button" onclick="sendTelegram()">Send to Telegram Bot</button>
-
+  <button type="button" onclick="sendTelegram()">Send to Telegram</button>
 </form>
 </section>
 
-
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 <footer>
-  <p>© 2025 ASO College of Stewardship — Institute of Excellence |
+  <p>© 2025 ASO College of Stewardship – Institute of Excellence |
     <a href="mailto:saviouragbelegbe@gmail.com">Email</a> |
     <a href="tel:+233546669312">Call</a>
   </p>
 </footer>
 
-
-<!-- ========= JAVASCRIPT LOGIC ========= -->
+<!-- ================= JAVASCRIPT ================= -->
 <script>
-  const WHATSAPP_NUMBER = "233546669312";
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }
 
-  // Replace with REAL Telegram Bot Token + Chat ID
+  const WHATSAPP_NUMBER = "233546669312";
   const TELEGRAM_BOT_TOKEN = "REPLACE_WITH_YOUR_BOT_TOKEN";
   const TELEGRAM_CHAT_ID = "REPLACE_WITH_CHAT_ID";
 
   function getData() {
     return {
-      name: name.value.trim(),
-      dob: dob.value.trim(),
-      country: country.value.trim(),
-      nationality: nationality.value.trim(),
-      hometown: hometown.value.trim(),
-      region: region.value.trim(),
-      education: education.value.trim(),
-      profession: profession.value.trim(),
-      email: email.value.trim(),
-      phone: phone.value.trim(),
-      address: address.value.trim(),
-      program: program.value.trim()
+      name: document.getElementById("name").value.trim(),
+      dob: document.getElementById("dob").value.trim(),
+      country: document.getElementById("country").value.trim(),
+      nationality: document.getElementById("nationality").value.trim(),
+      hometown: document.getElementById("hometown").value.trim(),
+      region: document.getElementById("region").value.trim(),
+      education: document.getElementById("education").value.trim(),
+      profession: document.getElementById("profession").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      address: document.getElementById("address").value.trim(),
+      program: document.getElementById("program").value.trim()
     };
   }
 
@@ -150,12 +151,9 @@ Email: ${d.email}
 Phone: ${d.phone}
 Address: ${d.address}
 Program: ${d.program}
-
-Submitted: ${new Date().toLocaleString()}
 `;
   }
 
-  // -------- PDF Generation --------
   async function downloadPDF() {
     if (!validate()) return;
 
@@ -164,28 +162,25 @@ Submitted: ${new Date().toLocaleString()}
     const doc = new jsPDF();
 
     doc.setFontSize(18);
-    doc.text("ASO College of Stewardship", 10, 20);
+    doc.text("ASO College of Stewardship – Admission Form", 10, 20);
 
     doc.setFontSize(12);
     let y = 35;
 
-    for (const key in d) {
+    for (let key in d) {
       doc.text(`${key.toUpperCase()}: ${d[key] || "-"}`, 10, y);
-      y += 10;
+      y += 8;
     }
 
-    doc.save("ASO_Admission_" + d.name.replace(/\s+/g, "_") + ".pdf");
+    doc.save(`ASO_Admission_${d.name.replace(/\s+/g, "_")}.pdf`);
   }
 
-  // -------- WhatsApp --------
   function sendWhatsApp() {
     if (!validate()) return;
-    const d = getData();
-    const message = encodeURIComponent(buildMessage(d));
+    const message = encodeURIComponent(buildMessage(getData()));
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
   }
 
-  // -------- Telegram Bot --------
   function sendTelegram() {
     if (!validate()) return;
 
@@ -194,28 +189,13 @@ Submitted: ${new Date().toLocaleString()}
       return;
     }
 
-    const d = getData();
-    const text = buildMessage(d);
-
     fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
-        text: text
+        text: buildMessage(getData())
       })
-    })
-    .then(r => r.json())
-    .then(r => {
-      if (r.ok) alert("Sent to Telegram Bot!");
-      else {
-        alert("Telegram Bot Failed. Opening Telegram app instead.");
-        window.open("https://t.me/share/url?url=&text=" + encodeURIComponent(text), "_blank");
-      }
-    })
-    .catch(() => {
-      alert("Telegram Error. Opening Telegram app.");
-      window.open("https://t.me/share/url?url=&text=" + encodeURIComponent(text), "_blank");
     });
   }
 </script>
