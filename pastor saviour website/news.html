@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News – ASO College of Stewardship</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <img src="images/logo.png" alt="ASO College Logo" style="height:50px;">
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="programs.html">Programs</a>
+    <a href="admissions.html">Admissions</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="news.html" class="active">News</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<header class="hero small-hero">
+  <h1>Latest News</h1>
+  <p>Stay updated with our events, programs, and announcements.</p>
+</header>
+
+<section>
+  <h2>Recent Updates</h2>
+  <article>
+    <h3>📢 2025 Admissions Now Open</h3>
+    <p>Applications for the 2025/2026 academic year are now being accepted.</p>
+  </article>
+  <article>
+    <h3>🎓 Graduation Ceremony</h3>
+    <p>Join us as we celebrate our graduating students on 15th December 2025.</p>
+  </article>
+</section>
+
+<footer>
+  <p>© 2025 ASO College of Stewardship – Institute of Excellence</p>
+</footer>
+<script>
+  const toggle = document.getElementById("menuToggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+  }
+</script>
+
+<a href="https://wa.me/233546669312" class="whatsapp-float">💬</a>
+<a href="admissions.html" class="apply-now">Apply Now</a>
+
+</body>
+</html>
