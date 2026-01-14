@@ -1,0 +1,31 @@
+backend:
+  name: github
+  repo: Potentialbeliever/aso-college-website
+  branch: main
+  # You must deploy an OAuth server and set these:
+  base_url: https://YOUR-OAUTH-SERVER.example.com
+  auth_endpoint: auth
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://YOUR-DOMAIN.example.com
+display_url: https://YOUR-DOMAIN.example.com
+
+collections:
+  - label: "Gallery"
+    name: "gallery"
+    files:
+      - label: "Gallery Items"
+        name: "items"
+        file: "data/gallery.json"
+        format: "json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Description", name: "description", widget: "text", required: false }

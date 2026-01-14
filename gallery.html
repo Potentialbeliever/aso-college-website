@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="See photos from campus life, events, classes, and graduation at ASO College of Stewardship.">
+  <meta property="og:title" content="Gallery – ASO College of Stewardship">
+  <meta property="og:description" content="See photos from campus life, events, classes, and graduation at ASO College of Stewardship.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="images/logo.png">
+  <meta name="theme-color" content="#0b1220">
+<title>Gallery – ASO College of Stewardship</title>
+    <link rel="canonical" href="https://YOUR-DOMAIN.example.com/gallery.html">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+ <div class="logo">
+   <img src="images/logo.png" alt="ASO College of Stewardship Logo" style="height:50px;">
+ </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="programs.html">Programs</a>
+    <a href="admissions.html">Admissions</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<header class="hero small-hero">
+  <h1>Gallery</h1>
+  <p>Explore moments from our classes, events, and student life.</p>
+</header>
+
+<section>
+  <h2>Photo Highlights</h2>
+  <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+<script>
+  (async function () {
+    try {
+      const res = await fetch("/data/gallery.json", { cache: "no-store" });
+      const data = await res.json();
+      const items = Array.isArray(data) ? data : (data.items || []);
+      const grid = document.getElementById("galleryGrid");
+      if (!Array.isArray(items) || items.length === 0) {
+        grid.innerHTML = `<p style="opacity:.8">No gallery items yet.</p>`;
+        return;
+      }
+      grid.innerHTML = items.map(i => {
+        const title = (i.title || "Photo").toString();
+        const img = (i.image || "").toString();
+        const desc = (i.description || "").toString();
+        return `
+          <figure class="gallery-card">
+            <a href="${img}" target="_blank" rel="noopener">
+              <img src="${img}" alt="${title}" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="gallery-meta">
+              <h3>${title}</h3>
+              ${desc ? `<p>${desc}</p>` : ``}
+            </figcaption>
+          </figure>
+        `;
+      }).join("");
+    } catch (e) {
+      const grid = document.getElementById("galleryGrid");
+      if (grid) grid.innerHTML = `<p style="opacity:.8">Gallery failed to load. Please refresh.</p>`;
+    }
+  })();
+</script>
+</section>
+
+<footer>
+  <p>© 2025 ASO College of Stewardship – Institute of Excellence</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "title": "Campus Life",
+      "image": "/images/gallery1.jpg",
+      "description": "Students engaged in learning and leadership."
+    },
+    {
+      "title": "ICT & Innovation",
+      "image": "/images/gallery2.jpg",
+      "description": "Hands-on training in modern ICT tools."
+    },
+    {
+      "title": "Herbal Lab",
+      "image": "/images/gallery3.jpg",
+      "description": "Exploring herbal medicine and natural health."
+    },
+    {
+      "title": "Graduation Day",
+      "image": "/images/gallery4.jpg",
+      "description": "Celebrating excellence and achievement."
+    }
+  ]
+}
