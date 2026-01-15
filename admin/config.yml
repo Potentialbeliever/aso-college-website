@@ -1,16 +1,12 @@
 backend:
-  name: github
-  repo: Potentialbeliever/aso-college-website
+  name: git-gateway
   branch: main
-  # You must deploy an OAuth server and set these:
-  base_url: https://YOUR-OAUTH-SERVER.example.com
-  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-site_url: https://YOUR-DOMAIN.example.com
-display_url: https://YOUR-DOMAIN.example.com
+site_url: https://asocos.com
+display_url: https://asocos.com
 
 collections:
   - label: "Gallery"
