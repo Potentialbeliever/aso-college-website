@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ASO College of Stewardship – Institute of Excellence for Herbal Studies, ICT, and Leadership training.">
+  <meta name="description" content="ASO College of Stewardship – Institute of Excellence for Herbal Studies, ICT, and Leadership training.">
   <meta property="og:title" content="ASO College of Stewardship">
   <meta property="og:description" content="ASO College of Stewardship – Institute of Excellence for Herbal Studies, ICT, and Leadership training.">
   <meta property="og:type" content="website">
   <link rel="icon" href="images/logo.png">
   <meta name="theme-color" content="#0b1220">
-<title>ASO College of Stewardship</title>
+  <title>ASO College of Stewardship</title>
 
-    <link rel="canonical" href="https://YOUR-DOMAIN.example.com/index.html">
-<!-- Google Fonts -->
+  <!-- Canonical -->
+  <link rel="canonical" href="https://asocos.com/">
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Main CSS -->
@@ -81,6 +83,20 @@
   function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("show");
   }
+</script>
+
+<!-- ✅ Netlify Identity recovery redirect fix (Free plan compatible) -->
+<script>
+(function () {
+  const hash = window.location.hash || "";
+  if (
+    hash.includes("recovery_token=") ||
+    hash.includes("invite_token=") ||
+    hash.includes("confirmation_token=")
+  ) {
+    window.location.replace("/admin/" + hash);
+  }
+})();
 </script>
 
 </body>
