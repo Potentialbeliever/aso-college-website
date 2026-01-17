@@ -1,11 +1,32 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin • ASO College</title>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.4.0/dist/decap-cms.js"></script>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | ASO College</title>
+
+    <!-- Netlify Identity (REQUIRED for login + password reset) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <!-- Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <script>
+      // Ensure recovery links like /admin/#recovery_token=xxxx work
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", function (user) {
+          // If coming from a recovery email, open the widget automatically
+          if (window.location.hash && window.location.hash.includes("recovery_token")) {
+            window.netlifyIdentity.open();
+          }
+        });
+
+        // Optional: after login, stay in /admin/
+        window.netlifyIdentity.on("login", function () {
+          document.location.href = "/admin/";
+        });
+      }
+    </script>
+  </body>
 </html>
