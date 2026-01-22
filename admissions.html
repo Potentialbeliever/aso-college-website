@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ASO College Admissions</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- jsPDF -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+  <div class="logo">
+    <img src="images/logo.png" alt="ASO College Logo">
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="programs.html">Programs</a>
+    <a href="admissions.html" class="active">Admissions</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero small-hero">
+  <h1>Admissions</h1>
+  <p>Start your journey with ASO College of Stewardship</p>
+</header>
+
+<!-- ================= FORM ================= -->
+<section>
+<form id="admissionForm" onsubmit="return false;">
+  <h3>Student Admission Form</h3>
+
+  <label>Full Name *</label>
+  <input id="name" type="text" required>
+
+  <label>Date of Birth</label>
+  <input id="dob" type="date">
+
+  <label>Country of Origin</label>
+  <input id="country" type="text">
+
+  <label>Nationality</label>
+  <input id="nationality" type="text">
+
+  <label>Hometown</label>
+  <input id="hometown" type="text">
+
+  <label>Region / Province</label>
+  <input id="region" type="text">
+
+  <label>Level of Education</label>
+  <select id="education">
+    <option value="">Select level</option>
+    <option>University</option>
+    <option>Senior High</option>
+    <option>Junior High</option>
+    <option>Primary</option>
+    <option>None</option>
+  </select>
+
+  <label>Profession</label>
+  <input id="profession" type="text">
+
+  <label>Email</label>
+  <input id="email" type="email">
+
+  <label>Phone Number *</label>
+  <input id="phone" type="tel" required>
+
+  <label>Residential Address</label>
+  <textarea id="address"></textarea>
+
+  <label>Program of Interest *</label>
+  <input id="program" type="text" required>
+
+  <button type="button" onclick="downloadPDF()">Download PDF</button>
+  <button type="button" onclick="sendWhatsApp()">Send to WhatsApp</button>
+  <button type="button" onclick="sendTelegram()">Send to Telegram</button>
+</form>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© 2025 ASO College of Stewardship – Institute of Excellence |
+    <a href="mailto:saviouragbelegbe@gmail.com">Email</a> |
+    <a href="tel:+233546669312">Call</a>
+  </p>
+
+  <p style="text-align:center;font-size:12px;opacity:.75;margin-top:10px;"><a href="admin/">Admin</a></p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }
+
+  const WHATSAPP_NUMBER = "233546669312";
+  const TELEGRAM_BOT_TOKEN = "REPLACE_WITH_YOUR_BOT_TOKEN";
+  const TELEGRAM_CHAT_ID = "REPLACE_WITH_CHAT_ID";
+
+  function getData() {
+    return {
+      name: document.getElementById("name").value.trim(),
+      dob: document.getElementById("dob").value.trim(),
+      country: document.getElementById("country").value.trim(),
+      nationality: document.getElementById("nationality").value.trim(),
+      hometown: document.getElementById("hometown").value.trim(),
+      region: document.getElementById("region").value.trim(),
+      education: document.getElementById("education").value.trim(),
+      profession: document.getElementById("profession").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      address: document.getElementById("address").value.trim(),
+      program: document.getElementById("program").value.trim()
+    };
+  }
+
+  function validate() {
+    const d = getData();
+    if (!d.name) return alert("Name is required");
+    if (!d.phone) return alert("Phone is required");
+    if (!d.program) return alert("Program is required");
+    return true;
+  }
+
+  function buildMessage(d) {
+    return `
+ASO College – New Admission
+
+Name: ${d.name}
+DOB: ${d.dob}
+Country: ${d.country}
+Nationality: ${d.nationality}
+Hometown: ${d.hometown}
+Region: ${d.region}
+Education: ${d.education}
+Profession: ${d.profession}
+Email: ${d.email}
+Phone: ${d.phone}
+Address: ${d.address}
+Program: ${d.program}
+`;
+  }
+
+  async function downloadPDF() {
+    if (!validate()) return;
+
+    const { jsPDF } = window.jspdf;
+    const d = getData();
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text("ASO College of Stewardship – Admission Form", 10, 20);
+
+    doc.setFontSize(12);
+    let y = 35;
+
+    for (let key in d) {
+      doc.text(`${key.toUpperCase()}: ${d[key] || "-"}`, 10, y);
+      y += 8;
+    }
+
+    doc.save(`ASO_Admission_${d.name.replace(/\s+/g, "_")}.pdf`);
+  }
+
+  function sendWhatsApp() {
+    if (!validate()) return;
+    const message = encodeURIComponent(buildMessage(getData()));
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
+  }
+
+  function sendTelegram() {
+    if (!validate()) return;
+
+    if (TELEGRAM_BOT_TOKEN.includes("REPLACE")) {
+      alert("Add your Telegram Bot Token first.");
+      return;
+    }
+
+    fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: buildMessage(getData())
+      })
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery – ASO College of Stewardship</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+ <div class="logo">
+   <img src="images/logo.png" alt="ASO College Logo" style="height:50px;">
+ </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="programs.html">Programs</a>
+    <a href="admissions.html">Admissions</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<section class="section" style="padding:40px 0;">
+  <div class="container">
+    <h1 style="margin:0 0 10px;">Campus Gallery</h1>
+    <p style="margin:0 0 18px;opacity:.85;">Browse campus moments. Admin can upload new images from the Admin panel.</p>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+
+<header class="hero small-hero">
+  <h1>Gallery</h1>
+  <p>Explore moments from our classes, events, and student life.</p>
+</header>
+
+<section>
+  <h2>Photo Highlights</h2>
+  <div class="gallery-grid">
+    <img src="images/gallery1.jpg" alt="Students">
+    <img src="images/gallery2.jpg" alt="Lecture">
+    <img src="images/gallery3.jpg" alt="Herbal Lab">
+    <img src="images/gallery4.jpg" alt="Graduation">
+    <img src="images/gallery5.jpg" alt="Graduation">
+    <img src="images/gallery6.jpg" alt="Graduation">
+    <img src="images/gallery7.jpg" alt="Graduation">
+      <img src="images/gallery8.jpg" alt="Herbal Lab">
+    <img src="images/gallery9.jpg" alt="Graduation">
+      <img src="images/gallery10.jpg" alt="Herbal Lab">
+       <img src="images/gallery11.jpg" alt="Students">
+    <img src="images/gallery12.jpg" alt="Lecture">
+    <img src="images/gallery13.jpg" alt="Herbal Lab">
+    <img src="images/gallery14.jpg" alt="Graduation">
+    <img src="images/gallery15.jpg" alt="Graduation">
+    <img src="images/gallery16.jpg" alt="Graduation">
+    <img src="images/gallery17.jpg" alt="Graduation">
+     <img src="images/gallery18.jpg" alt="Graduation">
+    <img src="images/gallery18.jpg" alt="Graduation">
+    <img src="images/gallery 20.jpg" alt="Graduation">
+       <img src="images/gallery21.jpg" alt="Graduation">
+    <img src="images/gallery22.jpg" alt="Graduation">
+    <img src="images/gallery23.jpg" alt="Graduation">alt="Graduation">
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 ASO College of Stewardship – Institute of Excellence</p>
+
+  <p style="text-align:center;font-size:12px;opacity:.75;margin-top:10px;"><a href="admin/">Admin</a></p>
+</footer>
+
+
+<script>
+(async function () {
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
+
+  try {
+    const res = await fetch('data/gallery.json', { cache: 'no-store' });
+    const data = await res.json();
+    const items = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : []);
+
+    if (!items.length) {
+      grid.innerHTML = '<p style="opacity:.8;">No gallery items yet. Please add from Admin.</p>';
+      return;
+    }
+
+    grid.innerHTML = items.map((it) => {
+      const title = (it.title || '').replace(/</g,'&lt;');
+      const desc = (it.description || '').replace(/</g,'&lt;');
+      const img = (it.image || '').replace(/"/g,'&quot;');
+      return `
+        <div class="gallery-card">
+          <img src="${img}" alt="${title || 'Gallery image'}" loading="lazy">
+          <div class="gallery-meta">
+            ${title ? `<h3>${title}</h3>` : ''}
+            ${desc ? `<p>${desc}</p>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+  } catch (e) {
+    grid.innerHTML = '<p style="color:#b00020;">Gallery failed to load. Check that <code>data/gallery.json</code> exists and is valid.</p>';
+  }
+})();
+</script>
+
+</body>
+</html>

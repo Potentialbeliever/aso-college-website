@@ -1,0 +1,9 @@
+## Decap CMS (Netlify CMS)
+## IMPORTANT: config.yml must NOT be caught by the /admin/* fallback.
+/admin/config.yml  /admin/config.yml  200
+
+## CMS SPA fallback
+/admin/*  /admin/index.html  200
+
+## Netlify Identity callback routes
+/.netlify/identity/*  /.netlify/identity/index.html  200
