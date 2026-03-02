@@ -1,0 +1,545 @@
+/* =====================================
+   Global Styles – ASO College Website
+   ===================================== */
+:root {
+  --primary-green: #2e7d32;
+  --primary-green-dark: #1b5e20;
+  --accent-orange: #ff9800;
+  --accent-orange-dark: #e68900;
+  --light-bg: #f9f9f9;
+  --text-dark: #333;
+  --text-light: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.7;
+  color: var(--text-dark);
+  background: var(--light-bg);
+}
+
+/* ================= NAVBAR ================= */
+nav {
+  background: var(--primary-green);
+  color: var(--text-light);
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+nav .logo img {
+  height: 50px;
+}
+
+nav .nav-links a {
+  color: var(--text-light);
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
+}
+
+nav .nav-links a:hover,
+nav .nav-links a.active {
+  color: var(--accent-orange);
+  transform: translateY(-2px);
+}
+
+/* ================= MOBILE NAVIGATION ================= */
+.menu-toggle {
+  display: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    flex-direction: column;
+    padding: 12px 20px;
+  }
+
+  nav .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: var(--primary-green-dark);
+    width: 100%;
+    padding: 15px 0;
+    border-top: 2px solid var(--accent-orange);
+    animation: dropMenu 0.3s ease forwards;
+  }
+
+  nav .nav-links.show {
+    display: flex;
+  }
+
+  nav .nav-links a {
+    margin: 8px 0;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+}
+
+@keyframes dropMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= HERO ================= */
+.hero {
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url('images/hero.jpg') center/cover no-repeat;
+  color: var(--text-light);
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.small-hero {
+  height: 40vh;
+}
+
+.hero h1,
+.hero p {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.35);
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  opacity: 0.95;
+}
+
+.hero .btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: var(--accent-orange);
+  color: var(--text-light);
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+
+.btn.btn-outline{
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.65);
+  color: var(--text-light);
+}
+.btn.btn-outline:hover{
+  background: rgba(255,255,255,.12);
+  transform: translateY(-1px);
+}
+.hero .btn:hover {
+  background: var(--accent-orange-dark);
+  transform: scale(1.05);
+}
+
+/* ================= FOUNDER ================= */
+.founder {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.founder-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.founder-content img {
+  max-width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.founder-text {
+  max-width: 650px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .founder-content {
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+  }
+}
+
+/* ================= SECTIONS ================= */
+section {
+  padding: 60px 50px;
+  background: var(--light-bg);
+}
+
+section h1,
+section h2 {
+  color: var(--primary-green-dark);
+  margin-bottom: 20px;
+  font-family: 'Merriweather', serif;
+}
+
+section h2::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: var(--accent-orange);
+  display: block;
+  margin-top: 8px;
+}
+
+/* ================= CARDS ================= */
+article {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* ================= GALLERY ================= */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+/* ================= FORMS ================= */
+form {
+  max-width: 700px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  border-top: 4px solid var(--primary-green);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+form h3 {
+  text-align: center;
+  color: var(--primary-green-dark);
+  margin-bottom: 25px;
+  font-family: 'Merriweather', serif;
+}
+
+form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--primary-green-dark);
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 0 3px rgba(255,152,0,0.25);
+  outline: none;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+form button {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-green);
+  color: var(--text-light);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background: var(--accent-orange);
+  transform: translateY(-2px);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: var(--primary-green-dark);
+  color: var(--text-light);
+  text-align: center;
+  padding: 25px;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: var(--accent-orange);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+footer a:hover {
+  color: var(--accent-orange-dark);
+  text-decoration: underline;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 40px 20px;
+  }
+}
+
+/* =====================================
+   FADE-IN ANIMATIONS
+===================================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeIn 0.9s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   FLOATING WHATSAPP BUTTON
+===================================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background: #25D366;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 50%;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* =====================================
+   STICKY APPLY NOW BUTTON
+===================================== */
+.apply-now {
+  position: fixed;
+  bottom: 80px;
+  right: 22px;
+  background: var(--accent-orange);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.apply-now:hover {
+  background: var(--accent-orange-dark);
+  transform: translateY(-3px);
+}
+
+
+/* ================= HOME HERO (Premium, no gallery-as-background) ================= */
+.hero.hero-home{
+  background: radial-gradient(900px 420px at 15% 20%, rgba(255,255,255,.12), transparent 60%),
+              linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
+  height: auto;
+  min-height: 72vh;
+  padding: 70px 18px 50px;
+  text-align: left;
+  align-items: stretch;
+}
+.hero.hero-home .hero-inner{
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 26px;
+  align-items: center;
+}
+.hero.hero-home h1{
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+.hero-pill{
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.92);
+  font-weight: 700;
+  letter-spacing: .3px;
+  font-size: 0.85rem;
+}
+.hero-lead{
+  max-width: 52ch;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.92);
+  margin-bottom: 18px;
+}
+.hero-actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.hero.hero-home .btn{ margin-top: 0; }
+
+.hero-badges{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+.badge{
+  border-radius: 12px;
+  padding: 12px 12px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(8px);
+}
+.badge strong{
+  display:block;
+  color: #fff;
+  font-size: 1.05rem;
+}
+.badge span{
+  display:block;
+  color: rgba(255,255,255,.86);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.hero-right{
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hero-media{
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 14px 34px rgba(0,0,0,.25);
+}
+.hero-media img{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+.hero-collage{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.hero-collage img{
+  width: 100%;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero.hero-home .hero-inner{
+    grid-template-columns: 1fr;
+  }
+  .hero-media img{ height: 260px; }
+  .hero-collage{ grid-template-columns: repeat(2, 1fr); }
+  .hero-collage img{ height: 110px; }
+  .hero-badges{ grid-template-columns: 1fr; }
+}

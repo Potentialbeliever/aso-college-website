@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: https://asocos.com
+display_url: https://asocos.com
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "site_data"
+    label: "Site Data"
+    files:
+      - name: "gallery"
+        label: "Gallery"
+        file: "data/gallery.json"
+        format: "json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Description", name: "description", widget: "text", required: false }

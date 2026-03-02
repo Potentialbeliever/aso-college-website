@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASO College of Stewardship</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+  <div class="logo">
+    <img src="images/logo.png" alt="ASO College Logo">
+  </div>
+
+  <!-- Mobile Menu Toggle -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <!-- Navigation Links -->
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="programs.html">Programs</a>
+    <a href="admissions.html">Admissions</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero hero-home fade-in">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="hero-pill">Institute of Excellence</span>
+      <h1>ASO College of Stewardship</h1>
+      <p class="hero-lead">
+        Transforming lives through Herbal Studies, ICT, and Leadership Training.
+      </p>
+      <div class="hero-actions">
+        <a href="admissions.html" class="btn">Apply Now</a>
+        <a href="programs.html" class="btn btn-outline">Explore Programs</a>
+      </div>
+      <div class="hero-badges">
+        <div class="badge"><strong>Herbal</strong><span>Studies</span></div>
+        <div class="badge"><strong>ICT</strong><span>Innovation</span></div>
+        <div class="badge"><strong>Leadership</strong><span>Training</span></div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-media">
+        <img src="images/hero.jpg" alt="ASO College Campus" loading="lazy">
+      </div>
+      <div class="hero-collage" aria-label="Campus moments">
+        <img src="images/gallery1.jpg" alt="Campus life" loading="lazy">
+        <img src="images/gallery2.jpg" alt="ICT & innovation" loading="lazy">
+        <img src="images/gallery3.jpg" alt="Herbal lab" loading="lazy">
+        <img src="images/gallery4.jpg" alt="Graduation day" loading="lazy">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= CONTENT ================= -->
+<section class="fade-in">
+  <h2>Why Choose Us?</h2>
+  <p>
+    At ASO College of Stewardship, we combine modern education,
+    spiritual leadership, and herbal wisdom to equip students
+    with practical skills for life, ministry, and community impact.
+  </p>
+  <a href="about.html" class="btn">Learn More</a>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>
+    © 2025 ASO College of Stewardship – Institute of Excellence |
+    <a href="mailto:saviouragbelegbe@gmail.com">Email</a> |
+    <a href="tel:+233242078167">Call</a>
+  </p>
+
+  <p style="text-align:center;font-size:12px;opacity:.75;margin-top:10px;"><a href="admin/">Admin</a></p>
+</footer>
+
+<!-- ================= FLOATING BUTTONS ================= -->
+<a href="https://wa.me/233242078167" class="whatsapp-float" target="_blank">💬</a>
+<a href="admissions.html" class="apply-now">Apply Now</a>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }
+</script>
+
+</body>
+</html>
